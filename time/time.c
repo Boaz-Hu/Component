@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-static uint8_t days_per_mon[2][12] = {
+static const uint8_t days_per_mon[2][12] = {
     {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
     {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
 };
