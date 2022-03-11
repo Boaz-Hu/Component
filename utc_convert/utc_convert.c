@@ -61,7 +61,7 @@ utc_time_t * utc_to_time(utc_sec *sec_time)
 }
 
 /*****************************************************************
- * @brief 年月日转换为UTC时间
+ * @brief 年月日时分秒转换为UTC时间
  * 
  * @param tm 时间结构体指针
  * @return 返回UTC时间
