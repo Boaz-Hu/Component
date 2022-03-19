@@ -60,7 +60,8 @@ void button_init(void)
  */
 void button_scan(void)
 {
-    uint8_t i;
+    uint8_t i = 0;
+    uint8_t button_is_pressed = 0;
     uint8_t button_logic_level = 0;
 
     /* -------------------------- 用户提供读取I/O操作 -------------------------- */
@@ -71,6 +72,8 @@ void button_scan(void)
 
     for (i = 0; i < BUTTON_MAX; i++)
     {
+        button_is_pressed = button_logic_level & (1 << i);
+
         if (button[i].status > BUTTON_STAGE_DEFAULT)
         {
             button[i].ticks++;
@@ -84,7 +87,7 @@ void button_scan(void)
         {
         case BUTTON_STAGE_DEFAULT: /* stage: default(button up) */
             button[i].event = BUTTON_EVENT_NONE;
-            if (button_logic_level & (1 << i)) /* is pressed */
+            if (button_is_pressed) /* is pressed */
             {
                 button[i].event = BUTTON_EVENT_DOWN;
                 button[i].status = BUTTON_STAGE_DOWN;
@@ -92,8 +95,8 @@ void button_scan(void)
                 button[i].clicks = 0;
             }
             break;
-        case BUTTON_STAGE_DOWN:                /* stage: button down */
-            if (button_logic_level & (1 << i)) /* is pressed */
+        case BUTTON_STAGE_DOWN:    /* stage: button down */
+            if (button_is_pressed) /* is pressed */
             {
                 if (button[i].clicks > 0) /* multiple click */
                 {
@@ -155,7 +158,7 @@ void button_scan(void)
             }
             break;
         case BUTTON_STAGE_MULTIPLE_CLICK:      /* stage: multiple click */
-            if (button_logic_level & (1 << i)) /* is pressed */
+            if (button_is_pressed)             /* is pressed */
             {
                 /* swtich to button down stage */
                 button[i].status = BUTTON_STAGE_DOWN;
