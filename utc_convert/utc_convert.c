@@ -29,8 +29,8 @@ static const uint8_t days_per_mon[2][12] = {
  ****************************************************************/
 void utc_to_time(utc_sec utc, utc_time_t *tm)
 {
-    uint32_t day = sec % SEC_PER_DAY;
-    uint32_t days = sec / SEC_PER_DAY;
+    uint32_t day = utc % SEC_PER_DAY;
+    uint32_t days = utc / SEC_PER_DAY;
 
     tm->sec = day % 60UL;
     tm->min = (day % 3600UL) / 60UL;
