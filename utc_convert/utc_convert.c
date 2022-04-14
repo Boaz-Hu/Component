@@ -24,8 +24,8 @@ static const uint8_t days_per_mon[2][12] = {
 /*****************************************************************
  * @brief UTC转换为年月日时分秒
  * 
- * @param utc UTC时间
- * @param 返回时间结构体指针
+ * @param[in] utc UTC时间
+ * @param[out] tm RTC时间
  ****************************************************************/
 void utc_to_time(utc_sec utc, utc_time_t *tm)
 {
@@ -59,8 +59,8 @@ void utc_to_time(utc_sec utc, utc_time_t *tm)
 /*****************************************************************
  * @brief 年月日时分秒转换为UTC时间
  * 
- * @param tm 时间结构体指针
- * @return 返回UTC时间
+ * @param tm RTC时间
+ * @return UTC时间
  ****************************************************************/
 utc_sec time_to_utc(utc_time_t *tm)
 {
