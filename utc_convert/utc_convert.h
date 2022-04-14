@@ -27,7 +27,7 @@ typedef struct utc_time_t
     uint8_t sec;
 } utc_time_t;
 
-utc_time_t * utc_to_time(utc_sec *sec_time);
+void utc_to_time(utc_sec utc, utc_time_t *tm);
 utc_sec time_to_utc(utc_time_t *tm);
 
 #endif // __UTC_CONVERT_H
