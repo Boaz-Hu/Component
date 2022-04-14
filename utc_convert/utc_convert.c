@@ -24,15 +24,13 @@ static const uint8_t days_per_mon[2][12] = {
 /*****************************************************************
  * @brief UTC转换为年月日时分秒
  * 
- * @param sec_time UTC时间
- * @return 返回时间结构体指针
+ * @param utc UTC时间
+ * @param 返回时间结构体指针
  ****************************************************************/
-utc_time_t * utc_to_time(utc_sec *sec_time)
+void utc_to_time(utc_sec utc, utc_time_t *tm)
 {
-    utc_time_t *tm;
-    uint16_t year_per_days = 0;
-    uint32_t day = *sec_time % SEC_PER_DAY;
-    uint32_t days = *sec_time / SEC_PER_DAY;
+    uint32_t day = sec % SEC_PER_DAY;
+    uint32_t days = sec / SEC_PER_DAY;
 
     tm->sec = day % 60UL;
     tm->min = (day % 3600UL) / 60UL;
@@ -56,8 +54,6 @@ utc_time_t * utc_to_time(utc_sec *sec_time)
 
     tm->mon++;
     tm->day++;
-
-    return tm;
 }
 
 /*****************************************************************
